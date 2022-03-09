@@ -7,7 +7,6 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
 import setAuthToken from "./utils/setAuthToken";
-import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 
@@ -18,8 +17,6 @@ if (localStorage.token) {
 const App = () => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, loading } = authContext;
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("loading", loading);
   return (
     <Router>
       <Fragment>
