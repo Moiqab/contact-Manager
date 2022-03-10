@@ -1,4 +1,6 @@
 import {
+    GET_CONTACTS,
+    CLEAR_CONTACTS,
     ADD_CONTACT,
     DELETE_CONTACT,
     SET_CURRENT,
@@ -6,11 +8,18 @@ import {
     UPDATE_CONTACT,
     FILTER_CONTACT,
     CLEAR_FLITER,
+    CONTACT_ERROR,
 
 } from '../types' ;
 
 export default (state, action )=>{
     switch(action.type){
+        case GET_CONTACTS :
+            return {
+                ...state,
+                contacts  : action.payload,
+                loading :false
+            }
         case ADD_CONTACT:
             return{
                 ...state,
@@ -19,7 +28,7 @@ export default (state, action )=>{
             case DELETE_CONTACT :
                 return {
                     ...state,
-                    contacts: state.contacts.filter( contact=> contact.id !== action.payload)
+                    contacts: state.contacts.filter( contact=> contact._id !== action.payload)
                 }
                 case SET_CURRENT :
                     return {
@@ -36,7 +45,7 @@ export default (state, action )=>{
                     case UPDATE_CONTACT : 
                     return {
                         ...state,
-                        contacts : state.contacts.map(contact => contact.id === action.payload.id ? action.payload : contact)
+                        contacts : state.contacts.map(contact => contact._id === action.payload._id ? action.payload : contact)
                     }
                     case FILTER_CONTACT :
                         return {
@@ -51,6 +60,19 @@ export default (state, action )=>{
                                 ...state,
                                 filtered: null
                             }
+                            case CONTACT_ERROR :
+                                return {
+                                    ...state,
+                                    error : action.payload
+                                }
+                                case CLEAR_CONTACTS:
+                                    return {
+                                        ...state,
+                                        contacts :null,
+                                        filtered:null,
+                                        current:null,
+                                        error:null
+                                    }
         default:
             return state;
     }

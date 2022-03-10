@@ -18,7 +18,7 @@ const ContactSchema = mongoose.Schema({
         type:Number,
         required:true
     },
-    relationship:{
+    type:{
         type:String,
         default: 'personal'
     },
