@@ -8,7 +8,7 @@
     "client": "npm start --prefix client",
     "clientinstall": "npm install prefix client",
     "dev": "concurrently \"npm run server \" \"npm run client\"",
-    "heroku-postbuild": "set NODE_ENV= development node index.js"
+    "heroku-postbuild": "set NODE_ENV= development npm run client\build"
   },
   "license": "MIT",
   "description": "contact manager app",
